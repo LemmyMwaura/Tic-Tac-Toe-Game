@@ -37,4 +37,16 @@ body {
 .board .cell:first-child, .board .cell:nth-child(2), .board .cell:nth-child(3) {
   border-top: none;
 }
+
+.board .cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.board .cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.board .cell:last-child, .board .cell:nth-child(7), .board .cell:nth-child(8) {
+  border-bottom: none;
+}
 /*# sourceMappingURL=styles.css.map */

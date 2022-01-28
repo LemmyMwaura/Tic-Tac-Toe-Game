@@ -38,5 +38,19 @@ body{
         &:nth-child(3) {
             border-top: none;
         }
+
+        &:nth-child(3n + 1) {
+            border-left: none;
+        }
+
+        &:nth-child(3n + 3) {
+            border-right: none;
+        }
+
+        &:last-child,
+        &:nth-child(7),
+        &:nth-child(8) {
+            border-bottom: none;
+        }
     }
 }
