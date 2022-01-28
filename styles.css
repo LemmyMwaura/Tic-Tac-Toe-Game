@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 :root {
   --cell-size: 100px;
-  --mark-size: calc(var(--cell-size) * 0.9)
-;
+  --mark-size: calc(var(--cell-size) * 0.9);
+  --font: 'Press Start 2P', cursive;
+  --font-size: 2.5rem;
 }
 
 *, ::after, ::before {
@@ -17,6 +19,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: var(--font);
+  font-size: var(--font-size);
+  font-weight: 500;
 }
 
 .board {
@@ -29,9 +34,14 @@ body {
 }
 
 .board .cell {
+  position: relative;
   width: var(--cell-size);
   height: var(--cell-size);
   border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .board .cell:first-child, .board .cell:nth-child(2), .board .cell:nth-child(3) {
@@ -48,5 +58,127 @@ body {
 
 .board .cell:last-child, .board .cell:nth-child(7), .board .cell:nth-child(8) {
   border-bottom: none;
+}
+
+.board .cell.x, .board .cell.circle {
+  cursor: not-allowed;
+}
+
+.board .cell.x::before, .board .cell.x::after {
+  content: '';
+  position: absolute;
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+  background-color: black;
+  border-radius: 0.5rem;
+}
+
+.board .cell.x::before {
+  transform: rotate(45deg);
+}
+
+.board .cell.x::after {
+  transform: rotate(-45deg);
+}
+
+.board .cell.circle::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.board .cell.circle::before {
+  width: calc(var(--mark-size) * 0.79);
+  height: calc(var(--mark-size) * 0.79);
+  border: 13px solid black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  content: '';
+  position: absolute;
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.5rem;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  width: calc(var(--mark-size) * 0.79);
+  height: calc(var(--mark-size) * 0.79);
+  border: 13px solid rgba(0, 0, 0, 0.7);
+}
+
+.winning-message {
+  background-color: rgba(255, 255, 255, 0.3);
+  min-width: 500px;
+  min-height: 400px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
+  border-radius: 0.2rem;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  transform: translate(-25%, -10%);
+  transition: 200ms ease;
+  display: none;
+}
+
+.winning-message div {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.winning-message button {
+  padding: 1rem;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  font-family: var(--font);
+  border-radius: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.winning-message button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 500;
+  display: none;
+  transition: 200ms ease;
+}
+
+.winning-message.show {
+  display: flex;
+}
+
+.overlay.show {
+  display: flex;
 }
 /*# sourceMappingURL=styles.css.map */
