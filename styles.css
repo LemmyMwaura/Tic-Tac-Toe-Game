@@ -1,0 +1,40 @@
+:root {
+  --cell-size: 100px;
+  --mark-size: calc(var(--cell-size) * 0.9)
+;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #2C3E50, #4CA0AE);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+  align-content: center;
+}
+
+.board .cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.board .cell:first-child, .board .cell:nth-child(2), .board .cell:nth-child(3) {
+  border-top: none;
+}
+/*# sourceMappingURL=styles.css.map */
