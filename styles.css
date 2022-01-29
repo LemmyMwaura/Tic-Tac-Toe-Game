@@ -99,16 +99,17 @@ body {
   position: absolute;
   width: calc(var(--mark-size) * 0.15);
   height: var(--mark-size);
-  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 0.5rem;
 }
 
 .board.x .cell:not(.x):not(.circle):hover::before {
   transform: rotate(45deg);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .board.x .cell:not(.x):not(.circle):hover::after {
   transform: rotate(-45deg);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .board.circle .cell:not(.x):not(.circle):hover::before {
