@@ -1,6 +1,9 @@
 "use strict";
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
+const winningMessageElement = document.getElementById('winning-message-element');
+const winningMessage = document.querySelector('[data-winning-message-text]');
+const overlay = document.querySelector('.overlay');
 const X_CLASS = 'x';
 const CIRCLE_CLASS = 'circle';
 const WINNING_COMBINATIONS = [
@@ -27,12 +30,31 @@ function handleClickEvent(e) {
     const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
     placeMark(cell, currentClass);
     //Check for win
-    if (checkWin) {
-        console.log('winner');
+    if (checkWin(currentClass)) {
+        endGame(false);
     }
-    //Check for Draw
-    swapTurns();
-    setBoardHoverClass();
+    else if (isDraw()) {
+        endGame(true);
+    }
+    else {
+        swapTurns();
+        setBoardHoverClass();
+    }
+}
+function endGame(draw) {
+    if (draw) {
+        winningMessage.textContent = 'Draw!';
+    }
+    else {
+        winningMessage.textContent = `${circleTurn ? "O's" : "X's"} wins!`;
+    }
+    winningMessageElement.classList.add('show');
+    overlay.classList.add('show');
+}
+function isDraw() {
+    return [...cellElements].every((cell) => {
+        return cell.classList.contains('x') || cell.classList.contains('circle');
+    });
 }
 function placeMark(cell, currentClass) {
     cell.classList.add(currentClass);
