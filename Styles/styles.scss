@@ -134,9 +134,10 @@ body{
 
 .winning-message{
     background-color: rgba(255,255,255,0.3);
-    min-width: 500px;
-    min-height: 400px;
-    position: absolute;
+    max-width: 500px;
+    max-height: 400px;
+    padding: 8rem 8rem;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -146,7 +147,7 @@ body{
     backdrop-filter: blur(15px);
     border-radius: 0.2rem;
     box-shadow: 0 25px 45px rgba(0,0,0,0.1);
-    transform: translate(-25%, -10%);
+    transform: translate(-12%);
     transition: 200ms ease;
     display: none;
 
@@ -189,4 +190,11 @@ body{
 
 .overlay.show{
     display: flex;
+}
+
+@media screen and (max-width: 365px){
+    .winning-message{
+        padding: 5rem 4rem;
+        transform: translate(7%, 8%);
+    } 
 }
